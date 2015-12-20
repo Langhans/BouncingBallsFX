@@ -1,0 +1,72 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'org.javafxports:jfxmobile-plugin:1.0.6'
+    }
+}
+
+apply plugin: 'org.javafxports.jfxmobile'
+
+repositories {
+
+    jcenter()
+
+    maven {
+        url 'https://oss.sonatype.org/content/repositories/snapshots/'
+    }
+}
+
+ext.CHARM_DOWN_VERSION = "0.0.3"
+
+
+dependencies {
+    compile "com.gluonhq:charm-down-common:$CHARM_DOWN_VERSION"
+    desktopRuntime "com.gluonhq:charm-down-desktop:$CHARM_DOWN_VERSION"
+    androidRuntime "com.gluonhq:charm-down-android:$CHARM_DOWN_VERSION"
+    iosCompile "org.robovm:robovm-cocoatouch:1.0.0"
+    iosRuntime "com.gluonhq:charm-down-ios:$CHARM_DOWN_VERSION"
+
+    /* compile 'com.gluonhq:charm-down-common:1.0.0'
+
+    androidRuntime 'com.gluonhq:charm-down-android:1.0.0'
+    desktopRuntime 'com.gluonhq:charm-down-desktop:1.0.0'
+    */
+
+}
+
+// sourceSets.main.resources.srcDir 'src/main/java'
+
+
+sourceSets {
+    main {
+
+        java {
+            srcDir 'src/main/java'
+        }
+
+
+        resources {
+            srcDir 'src/main/java/resources'
+            srcDirs = ["src/main/java"]
+            includes = ["**/*.fxml"]
+
+
+        }
+    }
+}
+
+mainClassName = 'se.yrgo.timlanghans.Main1'
+
+
+jfxmobile {
+    android {
+        manifest = 'src/android/AndroidManifest.xml'
+        androidSdk = '/usr/local/Cellar/android-sdk/24.4.1'
+    }
+    ios {
+        infoPList = file('src/ios/Default-Info.plist')
+        forceLinkClasses = ['com.gluonhq.charm.down.**.*']
+    }
+}
