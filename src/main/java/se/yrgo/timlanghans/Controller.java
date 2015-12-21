@@ -15,7 +15,9 @@ import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Sphere;
 import javafx.util.Duration;
 
 import java.net.URL;
@@ -30,13 +32,22 @@ public class Controller implements Initializable {
     Pane ballPane;
 
     @FXML
+    HBox menuBox;
+
+    @FXML
     CheckBox bWobble, bGravity;
 
     @FXML
     Slider slider;
 
     @FXML
-    Button bAdd, bDel;
+    Button bAdd;
+
+    @FXML
+    Button bDel;
+
+    @FXML
+    public Button bDelAll;
 
     private Bounds bounds;
 
@@ -59,7 +70,7 @@ public class Controller implements Initializable {
                 null, null, null, null)));
 
         // uncomment to start Application with 5 balls
-        //makeSpheres();
+        // makeSpheres();
 
         animation = new Timeline(new KeyFrame(Duration.millis(25),
                 e -> paintNextFrame()));
@@ -73,6 +84,7 @@ public class Controller implements Initializable {
 
 
     private void initEventHandlers() {
+
         ballPane.setOnZoom(e -> {
             Platform.runLater(() ->
                     spheres.forEach(b -> b.puffUpBall()));
@@ -96,6 +108,8 @@ public class Controller implements Initializable {
         });
 
         bDel.setOnAction(e -> deleteBallFromPlane());
+
+        bDelAll.setOnAction(e -> deleteAllBallsOnPlane());
     }
 
 
@@ -167,6 +181,13 @@ public class Controller implements Initializable {
             spheres.add(ball);
             ballPane.getChildren().add(ball);
         });
+    }
+
+
+    private void deleteAllBallsOnPlane() {
+        Platform.runLater(() ->
+                ballPane.getChildren().removeIf(
+                        b -> (b instanceof Sphere)));
     }
 
 

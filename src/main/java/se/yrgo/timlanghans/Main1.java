@@ -1,6 +1,5 @@
 package se.yrgo.timlanghans;
 
-
 import com.gluonhq.charm.down.common.PlatformFactory;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

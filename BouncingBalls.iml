@@ -26,6 +26,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/embedded/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/ios/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/gen" isTestSource="false" generated="true" />
       <excludeFolder url="file://$MODULE_DIR$/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/build" />
     </content>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.control.*?>
@@ -9,15 +10,17 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane id="ballPane" fx:id="ballPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.yrgo.timlanghans.Controller">
+<Pane id="ballPane" fx:id="ballPane" prefHeight="600.0" prefWidth="800.0"
+      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="se.yrgo.timlanghans.Controller">
     <children>
-        <HBox alignment="CENTER" depthTest="ENABLE" focusTraversable="true" layoutX="-6.0"
-              nodeOrientation="LEFT_TO_RIGHT" prefHeight="36.0" prefWidth="813.0" spacing="20.0">
+        <HBox fx:id="menuBox" alignment="CENTER" depthTest="ENABLE"
+              focusTraversable="true" layoutX="-6.0"
+              nodeOrientation="LEFT_TO_RIGHT" prefHeight="36.0"
+              prefWidth="813.0" spacing="20.0">
             <children>
                 <CheckBox fx:id="bWobble" mnemonicParsing="false"
-                          style="-fx-background: 'transparent'; -fx-text-fill: RED;" styleClass="buttons"
-                          text="BallWobble" textFill="#ff3d3d">
+                          styleClass="buttons" text="BallWobble">
                     <effect>
                         <Glow/>
                     </effect>
@@ -42,6 +45,12 @@
                         <Glow/>
                     </effect>
                 </Button>
+                <Button fx:id="bDelAll" mnemonicParsing="false"
+                        styleClass="buttons" text="Del All">
+                    <effect>
+                        <Glow/>
+                    </effect>
+                </Button>
             </children>
             <opaqueInsets>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
@@ -50,5 +59,11 @@
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
             </padding>
         </HBox>
+        <Label layoutX="273.0" layoutY="120.0" prefHeight="236.0"
+               prefWidth="361.0" text="LabelTEST">
+            <font>
+                <Font size="72.0"/>
+            </font>
+        </Label>
     </children>
 </Pane>
