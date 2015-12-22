@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -14,17 +15,25 @@ public class Main1 extends Application {
     public void start(Stage primaryStage) {
 
         try {
-            Pane root = (Pane) FXMLLoader.load(getClass().getResource("/assets/TextFxFxml.fxml"));
+            Pane root = (Pane) FXMLLoader.load(getClass().
+                    getResource("/assets/TextFxFxml.fxml"));
             Scene scene;
 
-            if (PlatformFactory.getPlatform().getName().equals(PlatformFactory.ANDROID)) {
+            if (PlatformFactory.getPlatform().getName().
+                    equalsIgnoreCase(PlatformFactory.ANDROID)) {
                 Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
-                scene = new Scene(root, visualBounds.getWidth(), visualBounds.getHeight());
+
+                scene = new Scene(root,
+                        visualBounds.getWidth(),
+                        visualBounds.getHeight());
+                root.getChildren().add(new Label("ANDROID! bounds: " + visualBounds.getWidth() + "x" + visualBounds.getHeight()));
 
             } else {
                 scene = new Scene(root);
+                root.getChildren().add(new Label("OTHER PLATFORMS! Bounds: " + Screen.getPrimary().getVisualBounds().toString()));
             }
-            scene.getStylesheets().add(Main1.class.getResource("/assets/application.css").toExternalForm());
+            scene.getStylesheets().add(Main1.class.
+                    getResource("/assets/application.css").toExternalForm());
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (Exception e) {

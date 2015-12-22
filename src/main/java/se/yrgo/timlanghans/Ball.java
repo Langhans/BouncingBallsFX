@@ -127,7 +127,9 @@ public class Ball extends Sphere {
 
     public void ballPressedOnWall() {
         if (pressAnimationOn.get()) {
-            KeyValue kv1 = new KeyValue(super.scaleXProperty(), animationAmount.get(), Interpolator.EASE_OUT);
+            KeyValue kv1 = new KeyValue(super.scaleXProperty(),
+                    animationAmount.get(),
+                    Interpolator.EASE_OUT);
             KeyFrame k1 = new KeyFrame(Duration.millis(200), kv1);
             Timeline tl = new Timeline(k1);
             tl.setCycleCount(2);
@@ -139,7 +141,9 @@ public class Ball extends Sphere {
 
     public void ballPressedOnBottom() {
         if (pressAnimationOn.get()) {
-            KeyValue kv1 = new KeyValue(super.scaleYProperty(), animationAmount.get(), Interpolator.EASE_OUT);
+            KeyValue kv1 = new KeyValue(super.scaleYProperty(),
+                    animationAmount.get(),
+                    Interpolator.EASE_OUT);
             KeyFrame k1 = new KeyFrame(Duration.millis(200), kv1);
             Timeline tl = new Timeline(k1);
             tl.setCycleCount(2);
