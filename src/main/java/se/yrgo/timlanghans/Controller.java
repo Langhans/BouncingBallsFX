@@ -12,10 +12,8 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.Slider;
-import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Sphere;
@@ -49,28 +47,27 @@ public class Controller {
     @FXML
     Button bDAll;
 
+    @FXML
+    MenuButton menuButton;
+
     private List<Ball> spheres = new ArrayList<>();
-
     private Timeline animation;
-
     private BooleanProperty gravity = new SimpleBooleanProperty();
 
     private static final double GRAVITY = 3;
-
 
     public void initialize() {
 
         ballPane.setPrefSize(
                 Screen.getPrimary().getVisualBounds().getWidth(),
                 Screen.getPrimary().getVisualBounds().getHeight());
-
         ballPane.autosize();
-
-        // complicated way to set a background-image => go CSS!
-        ballPane.setBackground(new Background(new BackgroundImage(new Image(
-                getClass().getResource("/assets/cockpit.jpg").toExternalForm()),
-                null, null, null, null)));
-
+        ballPane.setStyle(
+                "-fx-background-image: url(" +
+                        getClass().getResource(
+                                "/assets/cockpit.jpg").toExternalForm() + ");"
+                        + "-fx-background-size: cover;"
+        );
         // uncomment to start Application with 5 balls
         // makeSpheres();
 
@@ -127,6 +124,7 @@ public class Controller {
         bGravity.selectedProperty().bindBidirectional(gravity);
         bWobble.selectedProperty().bindBidirectional(Ball.pressAnimationOn);
         slider.valueProperty().bindBidirectional(Ball.animationAmount);
+
     }
 
     private void paintNextFrame() {

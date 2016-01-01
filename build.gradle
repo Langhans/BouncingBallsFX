@@ -27,17 +27,9 @@ dependencies {
     androidRuntime "com.gluonhq:charm-down-android:$CHARM_DOWN_VERSION"
     iosCompile "org.robovm:robovm-cocoatouch:1.0.0"
     iosRuntime "com.gluonhq:charm-down-ios:$CHARM_DOWN_VERSION"
-
-    /* compile 'com.gluonhq:charm-down-common:1.0.0'
-
-    androidRuntime 'com.gluonhq:charm-down-android:1.0.0'
-    desktopRuntime 'com.gluonhq:charm-down-desktop:1.0.0'
-    */
-
 }
 
 // sourceSets.main.resources.srcDir 'src/main/java'
-
 
 sourceSets {
     main {
@@ -46,13 +38,10 @@ sourceSets {
             srcDir 'src/main/java'
         }
 
-
         resources {
             srcDir 'src/main/java/resources'
             srcDirs = ["src/main/java"]
             includes = ["**/*.fxml"]
-
-
         }
     }
 }

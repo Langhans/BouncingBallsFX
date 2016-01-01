@@ -5,7 +5,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -15,25 +14,24 @@ public class Main1 extends Application {
     public void start(Stage primaryStage) {
 
         try {
-            Pane root = (Pane) FXMLLoader.load(getClass().
-                    getResource("/assets/TextFxFxml.fxml"));
+            Pane root;
             Scene scene;
+            Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
 
             if (PlatformFactory.getPlatform().getName().
                     equalsIgnoreCase(PlatformFactory.ANDROID)) {
-                Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
-
+                root = (Pane) FXMLLoader.load(getClass().
+                        getResource("/assets/BallPane_Android.fxml"));
                 scene = new Scene(root,
                         visualBounds.getWidth(),
                         visualBounds.getHeight());
-                root.getChildren().add(new Label("ANDROID! bounds: " + visualBounds.getWidth() + "x" + visualBounds.getHeight()));
-
             } else {
+                root = (Pane) FXMLLoader.load(getClass().
+                        getResource("/assets/BallPane_Desktop.fxml"));
                 scene = new Scene(root);
-                root.getChildren().add(new Label("OTHER PLATFORMS! Bounds: " + Screen.getPrimary().getVisualBounds().toString()));
             }
-            scene.getStylesheets().add(Main1.class.
-                    getResource("/assets/application.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource(
+                    "/assets/application.css").toExternalForm());
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (Exception e) {
@@ -42,7 +40,6 @@ public class Main1 extends Application {
     }
 
     public static void main(String[] args) {
-        System.out.println(PlatformFactory.getPlatform().getName() + " is run now!");
         launch(args);
     }
 }
